@@ -16,7 +16,7 @@ Open Magento 2 project to use this extension.
 ## Known Issues
 
 * To see the Magento 2 version open any file.
-* It cannot show version if Magento 2 is downloaded from git repository
+* It cannot show version if Magento 2 is downloaded or cloned from git repository
 
 ## Release Notes
 
