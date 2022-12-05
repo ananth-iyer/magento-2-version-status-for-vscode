@@ -3,7 +3,7 @@
 	"displayName": "Magento 2 version in VSCode",
 	"description": "Check Magento 2 in VS Code",
 	"publisher": "ananth-iyer",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.45.0"
 	},

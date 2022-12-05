@@ -65,18 +65,44 @@ function updateStatusBarItem() {
         return;
     }
     ;
+    if (cmp.name === 'magento/magento2ce') {
+        let name = 'Magento 2 CE';
+        statusBarItem.text = name;
+        statusBarItem.tooltip = name;
+        statusBarItem.show();
+        return;
+    }
+    let version = '';
+    const repositories = cmp.repositories;
     const req = cmp.require;
-    let version;
-    version = req['magento/product-community-edition'] || ' (Develop-version)';
+    version = req['magento/product-community-edition'] || '';
     version = req['magento/project-enterprise-edition'] || version;
+    let name = '';
+    for (const repo of repositories) {
+        if (repo['url'].search('mage-os') >= 0) {
+            name = 'MageOS';
+            break;
+        }
+    }
+    if (!name) {
+        name = n[1]
+            .replace('project-', '')
+            .split('-')
+            .map(word => word.charAt(0).toLocaleUpperCase() + word.slice(1))
+            .join(' ');
+    }
     if (req['magento/extension-b2b'] !== undefined) {
         version += ' with Installed B2B version ' + req['magento/extension-b2b'];
     }
-    text = n[1]
-        .replace('project-', '')
-        .split('-')
-        .map(word => word.charAt(0).toLocaleUpperCase() + word.slice(1))
-        .join(' ') + ' ' + version;
+    if (version === undefined && name === '') {
+        version = '';
+        name = '';
+        statusBarItem.text = '';
+        statusBarItem.tooltip = '';
+        statusBarItem.hide();
+        return;
+    }
+    text = name + ' ' + (version !== undefined ? version : '');
     statusBarItem.text = 'Magento 2: ' + text;
     statusBarItem.tooltip = text;
     statusBarItem.show();
