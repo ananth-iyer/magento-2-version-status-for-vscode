@@ -64,6 +64,9 @@ function updateStatusBarItem(): void {
 	}
 
     const cmp = require(p);
+    if (!cmp || !cmp.name) {
+        return;
+    }
 	const n = cmp.name.trim().split('/');
 
     if (typeof n[1] !== "string") {
@@ -92,11 +95,15 @@ function updateStatusBarItem(): void {
 	version = req['magento/project-enterprise-edition'] || version;
 
     let name = '';
-    for (const repo of repositories) {
-        if (repo['url'].search('mage-os') >= 0) {
-            name = 'MageOS';
-            break;
-        }
+    var rp = Object.values(repositories);
+
+    const find = rp.find(function (v) {
+        // @ts-ignore
+        return v.url.search('mage-os') >= 0;
+    });
+
+    if (find) {
+        name = 'MageOS';
     }
 
     if (!name) {
@@ -113,11 +120,11 @@ function updateStatusBarItem(): void {
 	}
 
 	if (version === undefined && name === '') {
-		version = '';
+		version = 'No Magento';
 		name = '';
         statusBarItem.text = '';
         statusBarItem.tooltip = '';
-        statusBarItem.hide();
+        // statusBarItem.hide();
         return;
 	}
 
@@ -128,9 +135,9 @@ function updateStatusBarItem(): void {
 }
 
 function hideStatusBarItem() {
-	statusBarItem.text = '';
-	statusBarItem.tooltip = '';
-	statusBarItem.hide();
+	statusBarItem.text = 'No Magento';
+	statusBarItem.tooltip = 'No Magento';
+	// statusBarItem.hide();
 }
 
 // this method is called when your extension is deactivated

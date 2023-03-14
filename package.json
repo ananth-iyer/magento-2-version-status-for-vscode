@@ -3,7 +3,7 @@
 	"displayName": "Magento 2 version in VSCode",
 	"description": "Check Magento 2 in VS Code",
 	"publisher": "ananth-iyer",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"engines": {
 		"vscode": "^1.45.0"
 	},
@@ -12,7 +12,7 @@
 	],
 	"icon": "icon.png",
 	"activationEvents": [
-		"*"
+		"onStartupFinished"
 	],
 	"main": "./out/extension.js",
 	"scripts": {
