@@ -4,6 +4,11 @@ All notable changes to the "magento-2-version-in-vscode" extension will be docum
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+
+## 0.0.4
+
+Improved and bug fixes
+
 ## 0.0.2.1
 
 - Fixed npm severity vulnerability
